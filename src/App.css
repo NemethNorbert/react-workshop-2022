@@ -50,6 +50,7 @@ span{
     transform:translateY(30px);
     font-size:0.825em;
     transition-duration:300ms;
+    padding: 0rem 0.5rem 1rem 1rem;
 }
 
 button{

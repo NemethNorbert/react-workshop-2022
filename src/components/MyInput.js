@@ -2,6 +2,8 @@ import React, { useState, useEffect, useRef } from 'react';
 
 const MyInput = ({id, name, className, label}) => {
 
+    const [value, setValue] = useState(0);
+
     const isNegative = (num) => {
         if (Math.sign(parseInt(num, 10)) === -1) {
           return true;
@@ -16,6 +18,8 @@ const MyInput = ({id, name, className, label}) => {
         } else {
             element.classList.remove('invalid');
         }
+
+        setValue(element.value);
     }
 
     return (
@@ -24,7 +28,8 @@ const MyInput = ({id, name, className, label}) => {
             <input 
                 type="number" 
                 id={id} 
-                name={name} 
+                name={name}
+                value={value} 
                 className={className} 
                 placeholder={label} 
                 onChange={(e) => validate(e.target)}/>
