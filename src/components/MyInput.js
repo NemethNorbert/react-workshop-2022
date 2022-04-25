@@ -1,26 +1,6 @@
-import React, { useState, useEffect, useRef } from 'react';
+import React from 'react';
 
-const MyInput = ({id, name, className, label}) => {
-
-    const [value, setValue] = useState(0);
-
-    const isNegative = (num) => {
-        if (Math.sign(parseInt(num, 10)) === -1) {
-          return true;
-        }
-      
-        return false;
-    }
-
-    const validate = (element) => {
-        if (isNegative(element.value)) {
-            element.classList.add('invalid');
-        } else {
-            element.classList.remove('invalid');
-        }
-
-        setValue(element.value);
-    }
+const MyInput = ({id, name, className, label, value, onChange, readonly}) => {
 
     return (
         <>
@@ -32,7 +12,8 @@ const MyInput = ({id, name, className, label}) => {
                 value={value} 
                 className={className} 
                 placeholder={label} 
-                onChange={(e) => validate(e.target)}/>
+                readOnly={!!readonly}
+                onChange={(e) => onChange(e.target)}/>
             <span>{label}</span>
         </label>
         </>
