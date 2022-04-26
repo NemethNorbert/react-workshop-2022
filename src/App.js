@@ -1,9 +1,11 @@
 import './App.css';
+import Euro from './Euro.js';
 
 function App() {
   return (
     <div className="App">
-      <label for="euro">Euros</label><div><input type="number" name="euro" id="euro" /></div>
+      <label for="euro">Euros</label>
+      <Euro />
     </div>
   );
 }
