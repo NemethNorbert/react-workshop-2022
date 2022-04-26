@@ -6,7 +6,7 @@ import './Euro.css';
 function Euro({money}) {
 
     const [borderClass, setBorder] = React.useState('black');
-    const [moneyValue, setValue] = React.useState({money})
+    const [moneyValue, setValue] = React.useState(money)
     return (
         <div>
             <input className={borderClass} type="number" id="euro" name="euro" value={moneyValue} onChange={handleChange}/>
