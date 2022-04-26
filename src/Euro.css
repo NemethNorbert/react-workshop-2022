@@ -1,0 +1,7 @@
+input[type="number"].black {
+    border: solid 1px black;
+}
+
+input[type="number"].red {
+    border: solid 1px red;
+}
