@@ -19,6 +19,9 @@ function App() {
   const [value, setValue] = React.useState(0)
   const [btc, setBTC] = React.useState(0)
 
+
+  let timeoutHanlder
+
   const validateValue = element => {
     if (element.value < 0) {
       element.className = 'red'
@@ -29,6 +32,13 @@ function App() {
     setValue(element.value)
     setBTC(value * exchangeRate())
 
+    if (timeoutHanlder) {
+      window.clearTimeout(timeoutHanlder);
+    }
+
+    timeoutHanlder = window.setTimeout(function(){
+      setBTC(0)
+    }, 5000)
   }
 
   return (
