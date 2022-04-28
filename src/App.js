@@ -2,12 +2,20 @@ import React, { useContext }  from 'react';
 import './App.css';
 
 
-function App() {
+function Currency ({id, name, className, value, readOnly}) {
+  return (
+    <div>
+      <label htmlFor={id}>{name}</label>
+      <input className={className} id={id} type="number" value={value}  readOnly={readOnly} />
+    </div>
+  )
+}
 
+function App() {
+  
   return (
     <div className="App">
-      <label htmlFor="euro">Euros : </label>
-      <input type="number" id="euro"/>
+      <Currency id="euro" name="Euro" value="0" className="black" readOnly={false} />
     </div>
   );
 }
