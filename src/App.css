@@ -1,15 +1,31 @@
 *{
-    margin:0;
-    padding:0;
     box-sizing:border-box;
-    color: #09101d;
 }
 
-body{
-    min-height:100vh;
-    display:grid;
-    place-content:center;
-    font-family:sans-serif;
+body {
+    --accent-color: orangered;
+    --background-color: white;
+    --text-color: #394452;
+    --button-text-color: var(--background-color);
+    --transition-delay: 1s;
+  
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    margin: 0;
+    overflow: hidden;
+  
+    transition: var(--transition-delay);
+    background-color: var(--background-color);
+    color: var(--text-color);
+}
+
+body.dark {
+    --accent-color: #D0D066;
+    --background-color: #333;
+    --text-color: white;
 }
 
 form{
@@ -39,6 +55,11 @@ input{
     border-radius: 6px;
 }
 
+input.dark {
+    background: #394452;
+    color: white;
+}
+
 input::placeholder{
     opacity:0;
 }
@@ -47,7 +68,6 @@ span{
     position:absolute;
     top:0;
     left:0;
-    transform:translateY(30px);
     font-size:0.825em;
     transition-duration:300ms;
     padding: 0rem 0.5rem 1rem 1rem;
@@ -67,7 +87,6 @@ button{
 
 label:focus-within > span,
 input:not(:placeholder-shown) + span{
-    color: #394452;
     transform:translateY(0px);
 }
 
@@ -75,9 +94,77 @@ input:not(:placeholder-shown) + span{
     border: 1px solid #da1414;
 }
 
+.title {
+    margin: 0;
+    margin-bottom: .5rem;
+}
+
+.theme-toggle-button {
+    background-color: var(--accent-color);
+    color: var(--button-text-color);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    padding: .5em 1em;
+    border-radius: .3em;
+    border: none;
+    outline: none;
+    transition: var(--transition-delay);
+    transform: scale(1);
+}
+
+.theme-toggle-button .icon {
+    margin-right: .5em;
+}
+
+.theme-toggle-button:hover {
+    transform: scale(1.1);
+}
+
+.sun-moon-container {
+    --rotation: 0;
+    position: absolute;
+    pointer-events: none;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    top: 0;
+    height: 50vmin;
+    transform: rotate(calc(var(--rotation) * 1deg));
+    transition: transform var(--transition-delay);
+}
+
+.sun,
+.moon {
+    position: absolute;
+    transition: opacity, fill, var(--transition-delay);
+    fill: var(--accent-color);
+}
+
+.sun {
+    top: 5%;
+    opacity: 1;
+}
+
+.dark .sun {
+    opacity: 0;
+}
+
+.moon {
+    bottom: 5%;
+    opacity: 0;
+    transform: rotate(180deg);
+}
+
+.dark .moon {
+    opacity: 1;
+}
+
 .center {
     margin: auto;
     width: 50%;
     padding: 10px;
     text-align: center;
-  }
+    font-size: xx-large;
+}

@@ -1,9 +1,15 @@
 import React from 'react';
+import { useTheme } from './ThemeContext';
 
-const MyInput = ({id, name, label, className, value, onChange, invalid, readonly}) => {
+const Amount = ({id, name, label, className, value, onChange, invalid, readonly}) => {
+    const darkTheme = useTheme();
 
     if (invalid) {
         className += " invalid";
+    }
+
+    if (darkTheme) {
+        className += " dark";
     }
 
     return (
@@ -24,4 +30,4 @@ const MyInput = ({id, name, label, className, value, onChange, invalid, readonly
     );
   }
   
-  export default MyInput;
+  export default Amount;

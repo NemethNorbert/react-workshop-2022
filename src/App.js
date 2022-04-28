@@ -1,5 +1,7 @@
-import React, { useState, useEffect, useRef } from 'react';
-import MyInput from './components/MyInput';
+import React, { useState } from 'react';
+import Amount from './components/Amount';
+import SwapThemeButton from './components/SwapThemeButton';
+import { ThemeProvider } from './components/ThemeContext';
 import './App.css';
 
 const exchangeRate = Math.random() * 10000;
@@ -35,33 +37,35 @@ const App = () => {
   }
 
   return (
+    <ThemeProvider>
     <div className="App">
       <div className="container">
         <h2 className="center">Zer0 to Hero</h2>
         <form>
-          <MyInput 
+          <Amount 
             id="eur"
             name="eur"
-            label="Euros" 
+            label="Euro" 
             className=""
             value={eur}
             onChange={validate}
             invalid={invalid}
             readonly={false}/> 
 
-          <MyInput 
+          <Amount 
             id="btc"
             name="btc"
-            label="$BTC" 
+            label="BTC" 
             className=""
             value={btc}
             invalid={invalid}
             readonly={true}/> 
 
-          <button type="button">Convert</button>
+          <SwapThemeButton />
         </form>
     </div>
     </div>
+    </ThemeProvider>
   );
 }
 
