@@ -4,17 +4,25 @@ import React from 'react';
 
 
 class App extends React.Component {
+	timer;
+	
 	constructor(props) {
 		super(props)
 		this.state = {
-			eur: 0
+			eur: 0,
+			exchangeRate: Math.random() * 10000
 		};
+		
+	}
+
+	componentDidMount() {
+		this.timer = setTimeout(() => this.setState({exchangeRate: 0}), 5000)
 	}
 	
-	exchangeRate() {
-      return Math.random() * 10000;
-    }
-	
+	componentWillUnmount() {
+		clearTimeout(this.timer);
+	}
+
 	handleChange = (event) => {
 		this.setState((state, props) => ({
 			eur: event.target.value
@@ -34,11 +42,10 @@ class App extends React.Component {
 					id="btc"
 					name="$BTC"
 					readOnly={true}
-					value={this.state.eur * this.exchangeRate()} />
+					value={this.state.eur * this.state.exchangeRate} />
 			</div>
 		);
 	}
-	
 
 }
 
