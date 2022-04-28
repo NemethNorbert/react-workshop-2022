@@ -1,6 +1,10 @@
 import React from 'react';
 
-const MyInput = ({id, name, className, label, value, onChange, readonly}) => {
+const MyInput = ({id, name, label, className, value, onChange, invalid, readonly}) => {
+
+    if (invalid) {
+        className += " invalid";
+    }
 
     return (
         <>
