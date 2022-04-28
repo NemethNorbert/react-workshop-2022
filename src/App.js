@@ -2,34 +2,39 @@ import React, { useContext }  from 'react';
 import './App.css';
 
 
-function Currency ({id, name, value, readOnly}) {
-  
-  const validateValue = event => {
-    if (event.target.value < 0) {
-      event.target.className = 'red'
-    }
-    else {
-      event.target.className = 'black'
-    }
-  }
-
+function Currency ({id, name, value, readOnly, onChange}) {
   return (
     <div>
       <label htmlFor={id}>{name}</label>
-      <input id={id} type="number" value={value}  readOnly={readOnly} onChange={validateValue}/>
+      <input id={id} type="number" value={value}  readOnly={readOnly} onChange={(e) => onChange(e.target)}/>
     </div>
   )
 }
 
+function exchangeRate() {
+  return Math.random() * 10000;
+}
+
 function App() {
-  const handleChange = event => {
-    console.log('handle change')
+  const [value, setValue] = React.useState(0)
+  const [btc, setBTC] = React.useState(0)
+
+  const validateValue = element => {
+    if (element.value < 0) {
+      element.className = 'red'
+    }
+    else {
+      element.className = 'black'
+    }
+    setValue(element.value)
+    setBTC(value * exchangeRate())
+
   }
 
   return (
     <div className="App">
-      <Currency id="euro" name="Euro"  className="black" readOnly={false} onChange={handleChange} />
-      <Currency id="btc" name="BTC" defaultValue="0" className="black" readOnly={true}/>
+      <Currency id="euro" name="Euro" value={value} className="black" readOnly={false} onChange={validateValue}/>
+      <Currency id="btc" name="BTC" value={btc} className="black" readOnly={true}/>
     </div>
   );
 }
