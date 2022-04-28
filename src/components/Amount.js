@@ -4,17 +4,6 @@ import React from 'react';
 class Amount extends React.Component {
 	constructor(props) {
 		super(props);
-		this.state = {
-			className: "",
-			value : this.props.value
-		};
-	}
-	
-	handleChange = (event) => {
-		this.setState((state, props) => ({
-			className: event.target.value < 0 ? "red" : "",
-			value: event.target.value
-		}));
 	}
 	
 	render() {
@@ -25,11 +14,11 @@ class Amount extends React.Component {
 				</label>
 				<input
 					id={this.props.id}
-					className={this.state.className}
+					className={this.props.className}
 					type="number"
-					onChange={this.handleChange}
+					onChange={this.props.handleChange}
 					readOnly={this.props.readOnly}
-					value={this.state.value}
+					value={this.props.value}
 				/>
 			</div>
 		);
