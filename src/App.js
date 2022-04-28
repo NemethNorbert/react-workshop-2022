@@ -37,6 +37,7 @@ const App = () => {
   return (
     <div className="App">
       <div className="container">
+        <h2 className="center">Zer0 to Hero</h2>
         <form>
           <MyInput 
             id="eur"
