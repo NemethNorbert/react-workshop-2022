@@ -1,10 +1,11 @@
 import './App.css';
+import Amount from './components/Amount';
+
 
 function App() {
   return (
     <div className="App">
-		<label htmlFor="euros">Euros</label>
-		<input id="euros" type="number" />
+		<Amount id="euros" name="Euros" />
     </div>
   );
 }
