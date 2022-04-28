@@ -28,6 +28,7 @@ class Amount extends React.Component {
 					className={this.state.className}
 					type="number"
 					onChange={this.handleChange}
+					readOnly={this.props.readOnly}
 					value={this.state.value}
 				/>
 			</div>
