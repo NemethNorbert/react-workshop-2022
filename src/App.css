@@ -1,0 +1,20 @@
+.App.dark {
+    background-color: #222222;
+    color: #eeeeee;
+}
+
+
+.App.light {
+    background-color: #eeeeee;
+    color:#222222
+}
+
+.App.dark select {
+    background-color: #555;
+    color: #ccc;
+}
+
+.App.dark input{
+    background-color: #222222;
+    color: #eeeeee;
+}
