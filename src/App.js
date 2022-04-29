@@ -7,6 +7,8 @@ function App() {
 
     return (
         <div className="App">
+            <Amount value={inputValue} message="Euro value: "/>
+            <Amount value={exchangeRate(inputValue)} message="BTC value: "/>
             <input defaultValue={0} type='number' label="Euros"
                    onChange={(event) => setInputValue(Number(event.target.value))}/>
         </div>
@@ -14,7 +16,7 @@ function App() {
 }
 
 function Amount(props) {
-    const myStyle = (props.value<0) ? { color: "red" } : { color: "black" }
+    const myStyle = (props.value < 0) ? {color: "red"} : {color: "black"}
     return <p style={myStyle}>{props.message}{props.value}</p>;
 }
 
