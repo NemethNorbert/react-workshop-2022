@@ -1,20 +1,37 @@
 import './App.css';
-import React from 'react';
+import React, { useEffect, useState } from "react";
 
 const defaultEuroValue=10;
+const timeOutMillis=5000;
+const defaultBTCValue=0;
 var isRedBorderAdded = false;
 
 
 function App() {
 
-	const [mystate, setMyState] = React.useState({euroValue: defaultEuroValue, btcValue: 0});
+	const [mystate, setMyState] = React.useState({euroValue: defaultEuroValue, btcValue: defaultBTCValue});
     const {euroValue, btcValue} = mystate;
     const exchangeRate = getExchangeRate();
+
+	useEffect(() => {
+	    const timer = setTimeout(() => {
+
+	    	setMyState({
+			  euroValue: euroValue,
+			  btcValue: defaultBTCValue
+			});
+
+	    }, timeOutMillis);
+
+    return function cleanup() {
+      clearTimeout(timer);
+    };
+  },[euroValue]);
 
     const myOnChange = (element) => {
 		let calcEur = element.value;
 		let calcBtc = element.value / exchangeRate;
-
+		
 		setMyState({
 		  euroValue: calcEur,
 		  btcValue: calcBtc
@@ -28,7 +45,6 @@ function App() {
     React.createElement(React.Fragment,null,euroComponent,btcComponent)
   );
 }
-
 
 function Amount({label, value, onChange, isReadOnly}) {
 
