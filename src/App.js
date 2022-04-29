@@ -3,8 +3,12 @@ import {useState} from "react";
 
 function App() {
 
+    const [inputValue, setInputValue] = useState(0);
+
     return (
         <div className="App">
+            <input defaultValue={0} type='number' label="Euros"
+                   onChange={(event) => setInputValue(Number(event.target.value))}/>
         </div>
     );
 }
