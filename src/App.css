@@ -130,6 +130,7 @@ input:not(:placeholder-shown) + span{
     justify-content: center;
     align-items: center;
     top: 0;
+    left: 50%;
     height: 50vmin;
     transform: rotate(calc(var(--rotation) * 1deg));
     transition: transform var(--transition-delay);
