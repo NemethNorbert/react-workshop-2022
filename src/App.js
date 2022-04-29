@@ -14,4 +14,8 @@ function Amount(props) {
     return <p style={myStyle}>{props.message}{props.value}</p>;
 }
 
+function exchangeRate(euroValue) {
+    return (euroValue * 0.000026).toFixed(6);
+}
+
 export default App;
