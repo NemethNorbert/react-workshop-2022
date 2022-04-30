@@ -1,10 +1,11 @@
+import React from "react";
 import './App.css';
+import Amount from "./components/Amount";
 
 function App() {
   return (
     <div className="App">
-      <label htmlFor="euro">Euros: </label>
-      <input type="number" id="euro"/>
+      <Amount currency={"Euro"} />
     </div>
   );
 }
