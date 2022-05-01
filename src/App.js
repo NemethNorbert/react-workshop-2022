@@ -1,5 +1,5 @@
 import Amount from './components/Amount';
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 
 
 function exchangeRate() {
@@ -9,6 +9,14 @@ function exchangeRate() {
 function App() {
   const [value, setValue] = useState(0);
   const [rate, setRate] = useState(exchangeRate);
+
+  useEffect(() => {
+		const timer = setTimeout(() => {alert("having a crush")}, 5000);
+
+		return () => {
+			clearTimeout(timer);
+		}
+	},[value]);
 
   return (
     <div className="App">
