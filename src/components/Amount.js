@@ -1,18 +1,17 @@
 import React, { useState } from 'react';
 import '../App.css';
 
-function Amount({name}) {
+function Amount({name, onChange, value}) {
     const [isNegative, setIsNegative] = useState(false);
-    const [value, setValue] = useState(0);
 
     const onChangeHandler = (e) => {
         setIsNegative(e.currentTarget.value < 0);
-        setValue(e.currentTarget.value);
+        onChange(e.currentTarget.value);
     }
 
     return (
         <>
-            <label for="euro">{name}</label>
+            <label htmlFor="euro">{name}</label>
 	        <input
                 className={isNegative ? 'negative' : ''}
                 id="euro"
