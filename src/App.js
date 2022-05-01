@@ -1,8 +1,9 @@
+import Amount from './components/Amount';
+
 function App() {
   return (
     <div className="App">
-      <label for="euro">Euro: </label>
-			<input id="euro" name="euro" placeholder="0" type="number" />
+      <Amount name="Euro" />
     </div>
   );
 }
