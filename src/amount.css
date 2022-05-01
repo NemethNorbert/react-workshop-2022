@@ -1,0 +1,6 @@
+.amount {
+    border: 2px solid #333;
+}
+.amount--negative{
+    border: 2px solid red;
+}

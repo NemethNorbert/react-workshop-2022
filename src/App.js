@@ -1,6 +1,6 @@
-import React from "react";
+import React from 'react';
 import './App.css';
-import Amount from "./components/Amount";
+import Amount from './components/Amount';
 
 function App() {
   return (
