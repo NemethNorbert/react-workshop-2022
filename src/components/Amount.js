@@ -3,9 +3,11 @@ import '../App.css';
 
 function Amount({name}) {
     const [isNegative, setIsNegative] = useState(false);
+    const [value, setValue] = useState(0);
 
     const onChangeHandler = (e) => {
         setIsNegative(e.currentTarget.value < 0);
+        setValue(e.currentTarget.value);
     }
 
     return (
@@ -17,7 +19,9 @@ function Amount({name}) {
                 name="euro"
                 onChange={onChangeHandler}
                 placeholder="0"
-                type="number" />
+                type="number"
+                value={value}
+                />
         </>
     );
 }
