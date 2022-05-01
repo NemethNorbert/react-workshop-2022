@@ -1,5 +1,5 @@
 import React, { useState } from 'react';
-import '../App.css';
+import '../styles/App.css';
 
 function Amount({name, onChange, value}) {
     const [isNegative, setIsNegative] = useState(false);
