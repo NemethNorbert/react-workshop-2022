@@ -2,9 +2,8 @@ import React, { useState } from 'react';
 import '../amount.css';
 
 function Amount({currency, value, onChange}) {
-    const [isNegative, setIsNegative] = React.useState(false)
+    const isNegative = value < 0;
     const setInputValue = (event) => {
-        setIsNegative( event.currentTarget.value < 0);
         onChange(event.currentTarget.value);
     }
     return (
