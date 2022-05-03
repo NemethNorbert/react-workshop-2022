@@ -1,15 +1,36 @@
-import React from 'react';
+import React, { useState } from 'react';
 import { useTheme } from './ThemeContext';
 
-const Amount = ({id, name, label, className, value, onChange, invalid, readonly}) => {
+const Amount = ({id, name, label, className, value, onChange, readonly}) => {
     const darkTheme = useTheme();
+    const [isValid, setIsValid] = useState(true);
 
-    if (invalid) {
+    if (!isValid) {
         className += " invalid";
     }
 
     if (darkTheme) {
         className += " dark";
+    }
+
+    const isNegative = (num) => {
+        if (Math.sign(parseInt(num, 10)) === -1) {
+          return true;
+        }
+    
+        return false;
+    }
+
+    const onChangeHandler = (event) => {
+        let isValid = true;
+        let value = event.currentTarget.value;
+
+        if (isNegative(value)) {
+            isValid = false;
+        } 
+
+        setIsValid(isValid);
+        onChange(value);
     }
 
     return (
@@ -23,7 +44,7 @@ const Amount = ({id, name, label, className, value, onChange, invalid, readonly}
                 className={className} 
                 placeholder={label} 
                 readOnly={!!readonly}
-                onChange={(e) => onChange(e.target)}/>
+                onChange={onChangeHandler}/>
             <span>{label}</span>
         </label>
         </>
