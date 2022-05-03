@@ -1,5 +1,7 @@
 import './App.css';
 import React, { useEffect, useState, useContext } from "react";
+import Amount from './components/Amount';
+import ThemeContext from './context/ThemeContext';
 
 const defaultEuroValue=10;
 const timeOutMillis=5000;
@@ -16,9 +18,6 @@ const themes = {
   }
 };
 var currentTheme = themes.light;
-
-const ThemeContext = React.createContext(currentTheme);
-
 
 function App() {
 
@@ -47,6 +46,12 @@ function App() {
 		let calcBtc = element.value / exchangeRate;
 		let theme=currentTheme;
 
+		if (element.value >= 0){
+	    	isRedBorderAdded = false;
+	    } else {
+	    	isRedBorderAdded = true;
+	    }
+
 		if (theme==themes.light){
 			theme = themes.dark;
 		} else {
@@ -60,43 +65,14 @@ function App() {
 		});
 	}
 
-	const euroComponent =<ThemeContext.Provider value={currentTheme}><Amount label="Euros" value={euroValue} onChange={myOnChange} isReadOnly={false} /></ThemeContext.Provider>
-	const btcComponent = <ThemeContext.Provider value={currentTheme}><Amount label="BTC" value={btcValue} isReadOnly={true} /></ThemeContext.Provider>
+	const euroComponent =<ThemeContext.Provider value={currentTheme}><Amount label="Euros" value={euroValue} onChange={myOnChange} isReadOnly={false} isRedBorderAdded={isRedBorderAdded} /></ThemeContext.Provider>
+	const btcComponent = <ThemeContext.Provider value={currentTheme}><Amount label="BTC" value={btcValue} isReadOnly={true} isRedBorderAdded={false} /></ThemeContext.Provider>
 
   return (
     	React.createElement(React.Fragment,null,euroComponent,btcComponent)
   );
 }
 
-function Amount({label, value, onChange, isReadOnly}) {
-
-	const theme = useContext(ThemeContext);
-
-	if (value >= 0){
-    	isRedBorderAdded = false;
-    } else {
-    	isRedBorderAdded = true;
-    }
-
-	return (
-		<div style={{ background: theme.background, color: theme.foreground }}>
-		    <div className={(isRedBorderAdded && !isReadOnly) ? "error" : "App"}>
-		    	<label>{label}:
-		         <input type="number" value={value} readOnly={isReadOnly} onChange=
-			        {
-			        	(event) => {
-			        		onChange(event.target)
-			        	}
-			        }
-		        >
-		        </input>
-		      </label>
-		    </div>
-		</div>
-
-
-  );
-}
 
 function getExchangeRate() {
 	return Math.random() * 10000;
