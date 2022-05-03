@@ -4,11 +4,14 @@ import SwapThemeButton from './components/SwapThemeButton';
 import { ThemeProvider } from './components/ThemeContext';
 import './App.css';
 
-const exchangeRate = Math.random() * 10000;
+const calcExchangeRate = () => {
+	return Math.random() * 10000;
+}
 
 const App = () => {
 
   const [state, setState] = useState({eur: 0, btc: 0});
+  const [exchangeRate, setExchangeRate] = useState(calcExchangeRate);
   const {eur, btc} = state;
 
   const validate = (value) => {
