@@ -14,7 +14,7 @@ const App = () => {
   const [exchangeRate, setExchangeRate] = useState(calcExchangeRate);
   const {eur, btc} = state;
 
-  const validate = (value) => {
+  const onChange = (value) => {
 
     let calcEur = value;
     let calcBtc = value * parseInt(exchangeRate, 10);
@@ -37,7 +37,7 @@ const App = () => {
             label="Euro" 
             className=""
             value={eur}
-            onChange={validate}
+            onChange={onChange}
             readonly={false}/> 
 
           <Amount 
