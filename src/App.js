@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect } from 'react';
 import Amount from './components/Amount';
 import SwapThemeButton from './components/SwapThemeButton';
 import { ThemeProvider } from './components/ThemeContext';
@@ -14,6 +14,14 @@ const App = () => {
   const [exchangeRate, setExchangeRate] = useState(calcExchangeRate);
   const {eur, btc} = state;
 
+  useEffect(() => {
+		let timer = setTimeout(()=>{setExchangeRate(0)}, 5000);
+
+		return () => {
+			clearTimeout(timer);
+		}
+	},[state]);
+
   const onChange = (value) => {
 
     let calcEur = value;
@@ -23,6 +31,10 @@ const App = () => {
       eur: calcEur,
       btc: calcBtc,
     });
+
+    if (exchangeRate === 0) {
+			setExchangeRate(calcExchangeRate);
+		}
   }
 
   return (
