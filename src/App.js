@@ -65,11 +65,14 @@ function App() {
 		});
 	}
 
-	const euroComponent =<ThemeContext.Provider value={currentTheme}><Amount label="Euros" value={euroValue} onChange={myOnChange} isReadOnly={false} isRedBorderAdded={isRedBorderAdded} /></ThemeContext.Provider>
-	const btcComponent = <ThemeContext.Provider value={currentTheme}><Amount label="BTC" value={btcValue} isReadOnly={true} isRedBorderAdded={false} /></ThemeContext.Provider>
-
   return (
-    	React.createElement(React.Fragment,null,euroComponent,btcComponent)
+    	<div>
+    		<ThemeContext.Provider value={currentTheme}>
+    			<Amount label="Euros" value={euroValue} onChange={myOnChange} isReadOnly={false} isRedBorderAdded={isRedBorderAdded} />
+				<Amount label="BTC" value={btcValue} isReadOnly={true} isRedBorderAdded={false} />    			
+    		</ThemeContext.Provider>
+    	</div>
+
   );
 }
 
