@@ -28,8 +28,8 @@ function App() {
       <ThemeContext.Provider value={theme}>
       <div className="App" style={{ background: theme.background, color: theme.foreground }}>
         
-         <Converter convertedName="btc" convertedLabel="BTC:"  exchangeRate="995" />
-         <Converter convertedName="eth" convertedLabel="ETH:"  exchangeRate="1.2" />
+         <Converter convertedName="btc" cryptoName="$BTC"  exchangeRate="995" />
+         <Converter convertedName="eth" cryptoName="$ETH"  exchangeRate="1.2" />
           <button value="Swap Theme" onClick={swapTheme} >Swap Theme</button>
       </div>
       </ThemeContext.Provider>
