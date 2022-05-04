@@ -1,11 +1,10 @@
 import '../App.css';
-import React, { useContext, useState, useRef } from 'react';
+import React, { useEffect, useContext, useState, useRef } from 'react';
 import Amount from './Amount';
 import ThemeContext from '../context/ThemeContext';
 
 const defaultEuroValue=0;
 const defaultConvertedValue=0;
-var isRedBorderAdded = false;
 const themes = {
   light: {
     foreground: "#000000",
@@ -16,10 +15,10 @@ const themes = {
     background: "#222222"
   }
 };
+var isRedBorderAdded = false;
 var currentTheme = themes.light;
 
-
-export default function Converter({label, exchangeRate}) {
+export default function Converter({label, exchangeRate, convertCount}) {
 
 	const [mystate, setMyState] = React.useState({euroValue: defaultEuroValue, convertedValue: defaultConvertedValue, currentTheme: themes.light});
     const {euroValue, convertedValue, currentTheme} = mystate;
@@ -30,25 +29,33 @@ export default function Converter({label, exchangeRate}) {
 		let calcConvertedValue = element.value / exchangeRate;
 		let theme=currentTheme;
 
-		if (element.value >= 0){
-	    	isRedBorderAdded = false;
-	    } else {
-	    	isRedBorderAdded = true;
-	    }
-
-		if (theme==themes.light){
-			theme = themes.dark;
+		if (convertCount.current == 5) {
+			alert('Convert without limits by becoming a premium user');
 		} else {
-			theme=themes.light;
-		}
 
-		titleRef.current="Convert " + calcEur + " euros to " + label;
-		
-		setMyState({
-		  euroValue: calcEur,
-		  convertedValue: calcConvertedValue,
-		  currentTheme: theme
-		});
+			if (element.value >= 0){
+		    	isRedBorderAdded = false;
+		    } else {
+		    	isRedBorderAdded = true;
+		    }
+
+			if (theme==themes.light){
+				theme = themes.dark;
+			} else {
+				theme=themes.light;
+			}
+
+			convertCount.current=convertCount.current+1;
+
+			titleRef.current="Convert " + calcEur + " euros to " + label;
+			
+			setMyState({
+			  euroValue: calcEur,
+			  convertedValue: calcConvertedValue,
+			  currentTheme: theme
+			});
+
+		}
 	}
 
 	return (
