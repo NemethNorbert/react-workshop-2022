@@ -1,5 +1,5 @@
 import '../App.css';
-import React, { useContext, useState } from 'react';
+import React, { useContext, useState, useRef } from 'react';
 import Amount from './Amount';
 import ThemeContext from '../context/ThemeContext';
 
@@ -18,10 +18,12 @@ const themes = {
 };
 var currentTheme = themes.light;
 
+
 export default function Converter({label, exchangeRate}) {
 
 	const [mystate, setMyState] = React.useState({euroValue: defaultEuroValue, convertedValue: defaultConvertedValue, currentTheme: themes.light});
     const {euroValue, convertedValue, currentTheme} = mystate;
+    const titleRef = React.useRef("Convert 0 euros to " + label);
 
 	const myOnChange = (element) => {
 		let calcEur = element.value;
@@ -39,6 +41,8 @@ export default function Converter({label, exchangeRate}) {
 		} else {
 			theme=themes.light;
 		}
+
+		titleRef.current="Convert " + calcEur + " euros to " + label;
 		
 		setMyState({
 		  euroValue: calcEur,
@@ -50,9 +54,12 @@ export default function Converter({label, exchangeRate}) {
 	return (
 		<ThemeContext.Provider value={currentTheme}>
 			<div>
+				<div ref={titleRef}>
+					Title: {titleRef.current}
+				</div>
 				<Amount label="Euros" value={euroValue} onChange={myOnChange} isRedBorderAdded={isRedBorderAdded} />
 		    	<label>{label}:
-		         	<input type="number" value={convertedValue} />
+		         	{convertedValue}
 		      </label>
 			</div>
 		</ThemeContext.Provider>
