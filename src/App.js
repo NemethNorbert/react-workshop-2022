@@ -25,22 +25,6 @@ function App() {
     const {euroValue, btcValue, currentTheme} = mystate;
     const exchangeRate = getExchangeRate();
 
-	useEffect(() => {
-	    const timer = setTimeout(() => {
-
-	    	setMyState({
-			  euroValue: euroValue,
-			  btcValue: defaultBTCValue,
-			  currentTheme: currentTheme
-			});
-
-	    }, timeOutMillis);
-
-    return function cleanup() {
-      clearTimeout(timer);
-    };
-  },[euroValue]);
-
     const myOnChange = (element) => {
 		let calcEur = element.value;
 		let calcBtc = element.value / exchangeRate;
