@@ -5,3 +5,8 @@ input[type="number"].black {
 input[type="number"].red {
     border: solid 1px red;
 }
+
+.premium {
+    font-weight: bold;
+    color: red;
+}
