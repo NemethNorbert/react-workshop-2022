@@ -25,6 +25,7 @@ class Converter  extends React.Component {
 	render() {
 		return (
 			<div className="converter">
+				{this.props.title}
 				<Amount
 					id={this.prefix + "euros"}
 					className={this.state.eur < 0 ? "red" : ""}

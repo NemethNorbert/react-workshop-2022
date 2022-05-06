@@ -33,7 +33,9 @@ class App extends React.Component {
 				<Converter
 					onConversion={this.onConversion}
 					cryptoName="$BTC"
-					exchangeRate={this.exchangeRateBTC} />
+					exchangeRate={this.exchangeRateBTC}
+					title={<span>valami <strong>is</strong> working</span>}
+				/>
 				<Converter
 					onConversion={this.onConversion}
 					cryptoName="$ETH"
