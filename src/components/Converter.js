@@ -1,6 +1,6 @@
-import './Converter.css';
-import Amount from './Amount';
-import React from 'react';
+import "./Converter.css";
+import Amount from "./Amount";
+import React from "react";
 
 class Converter  extends React.Component {
 	prefix;

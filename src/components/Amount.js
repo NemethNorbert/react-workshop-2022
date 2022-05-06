@@ -1,5 +1,5 @@
-import './Amount.css';
-import React from 'react';
+import "./Amount.css";
+import React from "react";
 
 class Amount extends React.Component {
 	constructor(props) {
