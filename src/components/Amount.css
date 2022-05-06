@@ -1,3 +1,7 @@
+.amount label{
+    display: inline-block;
+    width: 50px;
+}
 .amount.dark input{
     background-color: #555;
     color: #ccc;  
