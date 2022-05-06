@@ -3,7 +3,7 @@
 }
 
 body {
-    --accent-color: orangered;
+    --accent-color: #f87d09;
     --background-color: white;
     --text-color: #394452;
     --button-text-color: var(--background-color);
@@ -32,7 +32,7 @@ form{
     width:90vw;
     max-width:768px;
     border:1px solid #ddd;
-    padding:3vw;
+    padding:1vw;
     display:flex;
     flex-direction:column;
     border-radius:5px;
@@ -97,6 +97,7 @@ input:not(:placeholder-shown) + span{
 .title {
     margin: 0;
     margin-bottom: .5rem;
+    font-size: xx-large;
 }
 
 .theme-toggle-button {
@@ -164,11 +165,48 @@ input:not(:placeholder-shown) + span{
 
 .center {
     margin: auto;
-    width: 50%;
     padding: 10px;
     text-align: center;
 }
 
-.title {
+.premium-alert {
     font-size: xx-large;
 }
+
+.alert.alert-warning {
+  background-color: var(--accent-color);
+  border: 1px solid var(--accent-color);
+}
+
+.alert {
+  background-color: #29d2e4;
+  border: 1px solid #29d2e4;
+  color: #fff;
+  padding: 15px 20px;
+}
+
+.alert.alert-warning .alert-container {
+  position: relative;
+  max-width: 960px;
+  margin: 0 auto;
+}
+
+.alert.alert-warning .alert-icon {
+  float: left;
+  margin-right: 15px;
+}
+
+.alert.alert-warning .alert-info {
+  margin: 0 10px 0 0;
+  text-transform: uppercase;
+  font-weight: normal;
+  font-size: 14px;
+}
+
+.alert .alert-info {
+  margin: 0 10px 0 0;
+  text-transform: uppercase;
+  font-weight: normal;
+  font-size: 14px;
+}
+

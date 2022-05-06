@@ -1,10 +1,12 @@
 import React, { useState } from 'react';
 import Amount from './Amount';
+import { usePremiumUpdate } from './PremiumContext';
 
 const Converter = ({cryptoName, exchangeRate, title}) => {
     const [state, setState] = useState({eur: 0, crypto: 0});
     const {eur, crypto} = state;
     const cryptoLabel = cryptoName.toUpperCase();
+    const countPremium = usePremiumUpdate();
   
     const onChange = (value) => {
   
@@ -15,6 +17,8 @@ const Converter = ({cryptoName, exchangeRate, title}) => {
         eur: calcEur,
         crypto: calcCrypto,
       });
+
+      countPremium();
     }
 
     return (
