@@ -1,7 +1,7 @@
 import React, {useState } from 'react';
 import Amount from './Amount';
 
-function Converter({cryptoName, exchangeRate}) {
+function Converter({cryptoName, exchangeRate, header}) {
 
     const [value, setValue] = useState(0);
 
@@ -13,6 +13,7 @@ function Converter({cryptoName, exchangeRate}) {
 
     return (
         <>
+            <div className="header">{header}</div>
             <Amount 
                 name="Euro"                 
                 onChange={handleChange} 

@@ -19,10 +19,12 @@ function App() {
 
 
         <Converter
+            header={<h1>BTC converter</h1>}
             cryptoName="$BTC"
             exchangeRate={995}
         />
         <Converter
+            header={<h1>ETH converter</h1>}
             cryptoName="$ETH"
             exchangeRate={1.2}
         />
