@@ -15,11 +15,13 @@ const App = () => {
           cryptoName={"btc"}
           exchangeRate={995}
           className=""
+          title={<h3>EUR > BTC</h3>}
         />
         <Converter 
           cryptoName={"eth"}
           exchangeRate={1.2}
           className=""
+          title={<h3>EUR > ETH</h3>}
         />
         <SwapThemeButton />
       </div>

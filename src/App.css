@@ -167,5 +167,8 @@ input:not(:placeholder-shown) + span{
     width: 50%;
     padding: 10px;
     text-align: center;
+}
+
+.title {
     font-size: xx-large;
 }
