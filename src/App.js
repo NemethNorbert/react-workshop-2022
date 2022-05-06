@@ -16,6 +16,7 @@ class App extends React.Component {
 		return (
 			<div className="App">
 				<Converter cryptoName="$BTC" exchangeRate={this.exchangeRateBTC} />
+				<Converter cryptoName="$ETH" exchangeRate={1.2} />
 			</div>
 		);
 	}
