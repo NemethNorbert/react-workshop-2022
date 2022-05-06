@@ -4,14 +4,15 @@ import React from 'react';
 
 
 class App extends React.Component {
+	exchangeRateBTC;
 	
 	constructor(props) {
 		super(props)
 		this.state = {
-			eur: 0,
-			exchangeRate: Math.random() * 10000
+			eur: 0
 		};
 		
+		this.exchangeRateBTC = 995;
 	}
 
 	handleChange = (event) => {
@@ -33,7 +34,7 @@ class App extends React.Component {
 					id="btc"
 					name="$BTC"
 					readOnly={true}
-					value={this.state.eur * this.state.exchangeRate} />
+					value={this.state.eur * this.exchangeRateBTC} />
 			</div>
 		);
 	}
