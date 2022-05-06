@@ -18,6 +18,8 @@ class Converter  extends React.Component {
 		this.setState((state, props) => ({
 			eur: event.target.value
 		}));
+		
+		this.props.onConversion();
 	}
 	
 	render() {

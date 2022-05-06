@@ -8,15 +8,36 @@ class App extends React.Component {
 	
 	constructor(props) {
 		super(props)
-		
+		this.state = {
+			conversions: 0
+		};
+
 		this.exchangeRateBTC = 995;
 	}
+	
+	onConversion = () => {
+		this.setState((state, props) => ({
+			conversions: state.conversions + 1
+		}));
+	}
+	
+	componentDidUpdate() { 
+		if (this.state.conversions == 5 ) {
+			console.log("Need more conversions");
+		}
+	};
   
 	render() {
 		return (
 			<div className="App">
-				<Converter cryptoName="$BTC" exchangeRate={this.exchangeRateBTC} />
-				<Converter cryptoName="$ETH" exchangeRate={1.2} />
+				<Converter
+					onConversion={this.onConversion}
+					cryptoName="$BTC"
+					exchangeRate={this.exchangeRateBTC} />
+				<Converter
+					onConversion={this.onConversion}
+					cryptoName="$ETH"
+					exchangeRate={1.2} />
 			</div>
 		);
 	}
