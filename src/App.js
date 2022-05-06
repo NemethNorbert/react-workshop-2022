@@ -4,7 +4,6 @@ import React from 'react';
 
 
 class App extends React.Component {
-	timer;
 	
 	constructor(props) {
 		super(props)
@@ -13,14 +12,6 @@ class App extends React.Component {
 			exchangeRate: Math.random() * 10000
 		};
 		
-	}
-
-	componentDidMount() {
-		this.timer = setTimeout(() => this.setState({exchangeRate: 0}), 5000)
-	}
-	
-	componentWillUnmount() {
-		clearTimeout(this.timer);
 	}
 
 	handleChange = (event) => {
