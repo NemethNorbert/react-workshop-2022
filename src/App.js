@@ -1,27 +1,27 @@
-import { useEffect, useState } from 'react';
+import { useState } from 'react';
 import './App.css';
-import Amount from './components/Amount';
 import ThemeContext from './ThemeContext';
+import Converter from "./components/Converter";
 
 
 function App() {
-	const [value, setValue] = useState(0);
-	const [exchangeRate, setExchangeRate] = useState(995);
+	const [counter, setCounter] = useState(0);
 	const [theme, setTheme] = useState("light");
 
-	const onChange = (value) => {
-		setValue(value);
-
-		if (exchangeRate === 0) {
-			setExchangeRate(995);
+	function countConversion(limit=5) {
+		console.log("Counter: ", counter, " Limit: ", limit)
+		if (counter >= limit) {
+			alert("Convert without limits by becoming a premium user")
+		} else {
+			setCounter(counter+1)
 		}
 	}
 
 	return (
 		<ThemeContext.Provider value={{theme: theme}}>
 			<div className={'App ' + theme}>
-				<Amount name="Euros" value={value} onChange={onChange}/>
-				<Amount name="BTC" value={parseFloat(value * exchangeRate).toFixed(4)} disabled />
+				<Converter cryptoName={'BTC'} exchangeRate={955} title={"EUR-BTC Converter"} onChange={countConversion} />
+				<Converter cryptoName={'ETH'} exchangeRate={1.2} title={"EUR-ETH Converter"} onChange={countConversion} />
 				<label>
 					<span>Theme </span>
 					<select
