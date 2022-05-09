@@ -18,6 +18,15 @@ function App() {
     }
   },[conversion]);
 
+  useEffect(()=> {
+    fetch('http://localhost:3003/data')
+    .then(resp => resp.json())
+    .then(data => {
+      console.log(data);
+    })
+  }, [])
+
+
   return (
     <ThemeContext.Provider value={{theme: theme}}>
       <div className={"App " + theme}>
