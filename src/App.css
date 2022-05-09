@@ -100,7 +100,7 @@ input:not(:placeholder-shown) + span{
     font-size: xx-large;
 }
 
-.theme-toggle-button {
+.theme-toggle-button, .premium-alert-button {
     background-color: var(--accent-color);
     color: var(--button-text-color);
     display: flex;
@@ -115,11 +115,11 @@ input:not(:placeholder-shown) + span{
     transform: scale(1);
 }
 
-.theme-toggle-button .icon {
+.theme-toggle-button .icon, .premium-alert-button .icon {
     margin-right: .5em;
 }
 
-.theme-toggle-button:hover {
+.theme-toggle-button:hover, .premium-alert-button:hover {
     transform: scale(1.1);
 }
 
@@ -208,5 +208,9 @@ input:not(:placeholder-shown) + span{
   text-transform: uppercase;
   font-weight: normal;
   font-size: 14px;
+}
+
+.theme-toggle-container {
+  padding: 2em;
 }
 
