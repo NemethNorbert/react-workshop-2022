@@ -39,7 +39,7 @@ const Amount = ({id, name, label, className, value, onChange, readonly}) => {
             <input 
                 type="number" 
                 id={id} 
-                name={name}
+                name={id}
                 value={value} 
                 className={className} 
                 placeholder={label} 
