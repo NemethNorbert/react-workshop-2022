@@ -2,13 +2,14 @@ import { useEffect, useState } from 'react';
 import './App.css';
 import Converter from './components/Converter';
 import ThemeContext from './ThemeContext';
+import {useCachedState} from './functions/cacheState';
 
 const MAX_UNDISTURBED_CONVERSIONS = 5;
 
 function App() {
-	const [theme, setTheme] = useState("light");
+	const [theme, setTheme] = useCachedState('theme', "light");
 	const [conversions, setConversions] = useState(1);
-	const [isPremium, setIsPremium] = useState(false);
+	const [isPremium, setIsPremium] = useCachedState('isPremium');
 	const [currencies, setCurrencies] = useState(null);
 
 	const onCoversionChange = () => {
@@ -26,6 +27,7 @@ function App() {
 	}
 
   useEffect(()=> {
+
     fetch('http://localhost:3003/data')
     .then(resp => resp.json())
     .then(data => {
