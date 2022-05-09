@@ -9,6 +9,7 @@ function App() {
 	const [theme, setTheme] = useState("light");
 	const [conversions, setConversions] = useState(1);
 	const [isPremium, setIsPremium] = useState(false);
+	const [currencies, setCurrencies] = useState(null);
 
 	const onCoversionChange = () => {
 		if (conversions === MAX_UNDISTURBED_CONVERSIONS && !isPremium) {
@@ -24,15 +25,16 @@ function App() {
 		setConversions(1);
 	}
 
-/*
   useEffect(()=> {
     fetch('http://localhost:3003/data')
     .then(resp => resp.json())
     .then(data => {
-      console.log(data);
+      setCurrencies(data);
     })
+
   }, [])
-*/
+
+  if (currencies!= null) 
 	return (
 		<ThemeContext.Provider value={{theme: theme}}>
 			<div className={'App ' + theme}>
@@ -46,8 +48,9 @@ function App() {
 					{isPremium ? " Welcome our dearest Premium Customer, please sell us your soul! :) " : ""}
 				</label>
 				<br/>
-				<Converter cryptoName={"BTC"} exchangeRate={992} onChange={onCoversionChange} header={<strong>Bitcoin converter</strong>}/>
-				<Converter cryptoName={"ETH"} exchangeRate={1.2} onChange={onCoversionChange} header={<strong>Ethernium converter</strong>}/>
+				{currencies.map((currency, index) => (  
+		             <Converter key={index} cryptoName={currency.label} exchangeRate={currency.conversionRate} onChange={onCoversionChange} header={<strong>{currency.name} converter</strong>}/>
+		        ))}  
 				<label>
 					<span>Theme </span>
 					<select
