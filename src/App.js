@@ -5,7 +5,7 @@ import React from "react";
 
 
 class App extends React.Component {
-	
+
 	constructor(props) {
 		super(props)
 		this.state = {
@@ -17,7 +17,7 @@ class App extends React.Component {
 
 	onBecomePremium = (event) => {
 		event.preventDefault();
-		
+
 		this.setState({
 			isPremium: true
 		});
@@ -28,7 +28,7 @@ class App extends React.Component {
 			conversions: state.conversions + 1
 		}));
 	}
-	
+
 	componentDidMount() {
 		fetch('http://localhost:3003/data')
 			.then(resp => resp.json())
@@ -40,7 +40,7 @@ class App extends React.Component {
 			});
 	}
 
-	componentDidUpdate() { 
+	componentDidUpdate() {
 		if (!this.state.isPremium && this.state.conversions == 5 ) {
 			console.log("Need more conversions");
 		}
