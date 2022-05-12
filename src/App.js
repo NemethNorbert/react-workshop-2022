@@ -5,16 +5,14 @@ import React from "react";
 
 
 class App extends React.Component {
-	exchangeRateBTC;
 	
 	constructor(props) {
 		super(props)
 		this.state = {
 			conversions: 0,
+			currencies: [],
 			isPremium: false
 		};
-
-		this.exchangeRateBTC = 995;
 	}
 
 	onBecomePremium = (event) => {
@@ -29,6 +27,17 @@ class App extends React.Component {
 		this.setState((state, props) => ({
 			conversions: state.conversions + 1
 		}));
+	}
+	
+	componentDidMount() {
+		fetch('http://localhost:3003/data')
+			.then(resp => resp.json())
+			.then(data => {
+				console.log(data);
+				this.setState({
+					currencies: data
+				});
+			});
 	}
 
 	componentDidUpdate() { 
@@ -46,16 +55,15 @@ class App extends React.Component {
 					/>
 					: ""
 				}
+				{this.state.currencies.map(currency => (
 				<Converter
 					onConversion={this.onConversion}
-					cryptoName="$BTC"
-					exchangeRate={this.exchangeRateBTC}
+					cryptoName={currency.name}
+					exchangeRate={currency.conversionRate}
+					key={currency.id}
 					title={<span>valami <strong>is</strong> working</span>}
 				/>
-				<Converter
-					onConversion={this.onConversion}
-					cryptoName="$ETH"
-					exchangeRate={1.2} />
+				))}
 			</div>
 		);
 	}
