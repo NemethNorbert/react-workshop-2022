@@ -3,7 +3,6 @@ import Converter from "./components/Converter";
 import BecomePremium from "./components/BecomePremium";
 import React from "react";
 
-
 class App extends React.Component {
 
 	constructor(props) {
@@ -11,12 +10,14 @@ class App extends React.Component {
 		this.state = {
 			conversions: 0,
 			currencies: [],
-			isPremium: false
+			isPremium: window.localStorage.getItem("isPremium")
 		};
 	}
 
 	onBecomePremium = (event) => {
 		event.preventDefault();
+
+		window.localStorage.setItem("isPremium", true);
 
 		this.setState({
 			isPremium: true
