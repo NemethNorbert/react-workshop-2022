@@ -122,46 +122,6 @@ input:not(:placeholder-shown) + span{
     transform: scale(1.1);
 }
 
-.sun-moon-container {
-    --rotation: 0;
-    position: absolute;
-    pointer-events: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    top: 0;
-    left: 50%;
-    height: 50vmin;
-    transform: rotate(calc(var(--rotation) * 1deg));
-    transition: transform var(--transition-delay);
-}
-
-.sun,
-.moon {
-    position: absolute;
-    transition: opacity, fill, var(--transition-delay);
-    fill: var(--accent-color);
-}
-
-.sun {
-    top: 5%;
-    opacity: 1;
-}
-
-.dark .sun {
-    opacity: 0;
-}
-
-.moon {
-    bottom: 5%;
-    opacity: 0;
-    transform: rotate(180deg);
-}
-
-.dark .moon {
-    opacity: 1;
-}
-
 .center {
     margin: auto;
     padding: 10px;

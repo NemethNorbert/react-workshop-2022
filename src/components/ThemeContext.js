@@ -1,4 +1,5 @@
-import React, { useState, useContext } from 'react';
+import React, { useState, useContext, useEffect } from 'react';
+import { useCachedState, storeCachedState } from './util.js' 
 
 const ThemeContext = React.createContext();
 const ThemeUpdateContext = React.createContext();
@@ -11,16 +12,30 @@ export function useThemeUpdate() {
     return useContext(ThemeUpdateContext);
 }
 
+const cachedStateKey = 'darkTheme';
+
 export function ThemeProvider({ children }) {
-    const [darkTheme, setDarkTheme] = useState(false);
+    const cachedDarkTheme = useCachedState(cachedStateKey, false);
+    const [darkTheme, setDarkTheme] = useState(cachedDarkTheme);
+
+    useEffect(()=> {
+        if (darkTheme === false) {
+            document.body.classList.remove('dark');
+        } else {
+            document.body.classList.add('dark');
+        }
+      }, [darkTheme])
 
     const swapTheme = () => {
         document.body.classList.toggle('dark');
-        const sunMoonContainer = document.querySelector('.sun-moon-container');
-        const currentRotation = parseInt(getComputedStyle(sunMoonContainer).getPropertyValue('--rotation'));
-        sunMoonContainer.style.setProperty('--rotation', currentRotation + 180);
-    
-        setDarkTheme(prevDarkTheme => !prevDarkTheme);
+
+        setDarkTheme(prevDarkTheme => {
+            const darkTheme = !prevDarkTheme;
+
+            storeCachedState(cachedStateKey, darkTheme);
+
+            return darkTheme
+        });
     }
 
     return (
