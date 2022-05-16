@@ -1,4 +1,5 @@
 import React, { useState, useEffect, useRef } from 'react';
+import PropTypes from 'prop-types';
 import { useTheme } from './ThemeContext';
 
 const Amount = ({id, name, label, className, value, onChange, readonly}) => {
@@ -58,5 +59,15 @@ const Amount = ({id, name, label, className, value, onChange, readonly}) => {
         </>
     );
   }
+
+  Amount.propTypes = {
+    id: PropTypes.string,
+    name: PropTypes.string,
+    label: PropTypes.string,
+    className: PropTypes.string,
+    value: PropTypes.number,
+    onChange: PropTypes.func,
+    readonly: PropTypes.bool,
+  };
   
   export default Amount;

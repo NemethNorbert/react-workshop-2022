@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import PropTypes from 'prop-types';
 import Amount from './Amount';
 import { usePremiumUpdate } from './PremiumContext';
 
@@ -46,5 +47,12 @@ const Converter = ({cryptoName, cryptoLabel, exchangeRate, title}) => {
         </div>
     );
   }
+
+  Converter.propTypes = {
+    cryptoName: PropTypes.string,
+    cryptoLabel: PropTypes.string,
+    exchangeRate: PropTypes.number,
+    title: PropTypes.object,
+  };
   
   export default Converter;
