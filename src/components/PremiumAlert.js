@@ -1,22 +1,15 @@
 import React, { useState } from 'react';
 import { usePremium } from './PremiumContext';
-import { useCachedState, storeCachedState } from './util.js' 
+import useCachedState from '../hooks/useCachedState';
 
 const cachedStateKey = 'premium';
 
 const PremiumAlert = () => {
-  const cachedPremium = useCachedState(cachedStateKey, false);
-  const [premium, setPremium] = useState(cachedPremium);
+  const [premium, setPremium] = useCachedState(cachedStateKey, false);
   const premiumCount = usePremium();
 
   const onClick = () => {
-    setPremium(prevPremium => {
-      const premium = !prevPremium;
-
-      storeCachedState(cachedStateKey, premium);
-      
-      return premium;
-    });
+    setPremium(prevPremium => !prevPremium);
   }
     
   return (

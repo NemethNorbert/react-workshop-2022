@@ -1,5 +1,5 @@
 import React, { useState, useContext, useEffect } from 'react';
-import { useCachedState, storeCachedState } from './util.js' 
+import useCachedState from '../hooks/useCachedState';
 
 const ThemeContext = React.createContext();
 const ThemeUpdateContext = React.createContext();
@@ -15,8 +15,7 @@ export function useThemeUpdate() {
 const cachedStateKey = 'darkTheme';
 
 export function ThemeProvider({ children }) {
-    const cachedDarkTheme = useCachedState(cachedStateKey, false);
-    const [darkTheme, setDarkTheme] = useState(cachedDarkTheme);
+    const [darkTheme, setDarkTheme] = useCachedState(cachedStateKey, false);
 
     useEffect(()=> {
         if (darkTheme === false) {
@@ -29,13 +28,7 @@ export function ThemeProvider({ children }) {
     const swapTheme = () => {
         document.body.classList.toggle('dark');
 
-        setDarkTheme(prevDarkTheme => {
-            const darkTheme = !prevDarkTheme;
-
-            storeCachedState(cachedStateKey, darkTheme);
-
-            return darkTheme
-        });
+        setDarkTheme(prevDarkTheme => !prevDarkTheme);
     }
 
     return (
