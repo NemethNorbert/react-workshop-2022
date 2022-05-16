@@ -1,9 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { useTheme } from './ThemeContext';
 
 const Amount = ({id, name, label, className, value, onChange, readonly}) => {
     const darkTheme = useTheme();
     const [isValid, setIsValid] = useState(true);
+    const inputReference = useRef(null);
 
     if (!isValid) {
         className += " invalid";
@@ -33,6 +34,12 @@ const Amount = ({id, name, label, className, value, onChange, readonly}) => {
         onChange(value);
     }
 
+    useEffect(() => {
+        if (name == "Ethernium") {
+            inputReference.current.focus();
+        }
+    }, []);
+
     return (
         <>
         <label htmlFor={id}>
@@ -40,6 +47,7 @@ const Amount = ({id, name, label, className, value, onChange, readonly}) => {
                 type="number" 
                 id={id} 
                 name={id}
+                ref={inputReference}
                 value={value} 
                 className={className} 
                 placeholder={label} 
