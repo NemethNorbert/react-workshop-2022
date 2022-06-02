@@ -1,42 +1,44 @@
 import { useEffect, useState } from 'react';
 import './App.css';
-import Converter from './components/Converter';
-import ThemeContext from './contexts/ThemeContext';
+import FetchConverters from './components/ConverterSource';
+import ThemeSelector from './components/ThemeSelector';
+import {ThemeContext, ThemeOptions } from './contexts/ThemeContext';
 import React from 'react';
+import {useBooleanStorage, useStringStorage} from './hooks/CustomHooks';
 
 function App() {
   const [conversion, setConversion] = useState(0);
-  const [theme, setTheme] = useState("dark");
+  const [theme, setTheme] = useStringStorage("theme", ThemeOptions[0]);
+  const [isPremium, setIsPremium] =  useBooleanStorage("isPremium",false);
 
   function handleConversion(){
     setConversion(conversion + 1);
   }
 
   useEffect(()=>{
-    if(conversion >=5){
+    if(conversion >=5 && !isPremium){
       alert("Convert without limits by becoming a premium user");
     }
   },[conversion]);
 
-  useEffect(()=> {
-    fetch('http://localhost:3003/data')
-    .then(resp => resp.json())
-    .then(data => {
-      console.log(data);
-    })
-  }, [])
-
+  function handleClick(){
+    setIsPremium(true);
+  }
 
   return (
     <ThemeContext.Provider value={{theme: theme}}>
       <div className={"App " + theme}>
-      <Converter cryptoName="BTC" title= {<strong>BTC converter</strong>} exchangeRate={955} onChange={handleConversion}/>
-      <Converter cryptoName="ETH" title= {<strong>ETH converter</strong>} exchangeRate={1.2} onChange={handleConversion}/>
-      <select onChange={event => setTheme(event.target.value)} value={theme}>
-        <option value="light">light</option>
-        <option value="dark">dark</option>
-      </select>
-      {conversion}
+
+        <FetchConverters source={'http://localhost:3003/data'} onChange={handleConversion}/>
+        <ThemeSelector onThemeChange={setTheme}/>
+
+        <div style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center"
+          }}>  
+                {isPremium ? <strong>you are premium</strong> : <button onClick={handleClick}>Become preimum</button> }
+        </div>
       </div>
     </ThemeContext.Provider>
   );

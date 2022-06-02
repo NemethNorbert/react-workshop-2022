@@ -1,0 +1,22 @@
+.converter {
+    margin: 3px;
+    padding: 3px;
+    display: inline-flex;
+    flex-direction: column;
+}
+.converter.dark{
+border: 2px solid #ccc;
+}
+.converter.light{
+    border: 2px solid #555;
+}
+
+.converter .converter-header {
+    font-size: 20px;
+    text-transform: uppercase;
+    margin: 8px;
+}
+
+.converter .title {
+    text-align: center;
+}

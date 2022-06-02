@@ -1,6 +1,7 @@
 .amount label{
     display: inline-block;
-    width: 50px;
+    width: 75px;
+    text-align: right;
 }
 .amount.dark input{
     background-color: #555;

@@ -15,7 +15,7 @@ app.get('/data', (req, res) => {
     res.send([
         {
             "id": 1,
-            "name": "Bitcoin3",
+            "name": "Bitcoin",
             "label": "BTC",
             "conversionRate": 995
         },
