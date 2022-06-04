@@ -5,11 +5,12 @@ import ThemeContext from "./context/ThemeContext";
 function App() {
   const [theme, setTheme] = useState("light");
   const [conversion, setConversion] = useState(0);
+  const [isPremium, setIsPremium] = useState(false);
 
   const MAX_CONVERSION = 5;
 
   const countConversion = () => {
-    if (conversion === MAX_CONVERSION) {
+    if (!isPremium && conversion === MAX_CONVERSION) {
       alert("Convert without limits by becoming a premium user");
       setConversion(1);
     } else {
@@ -40,6 +41,13 @@ function App() {
           exchangeRate={1.2}
           onChange={countConversion}
         />
+        <span>
+          {isPremium ? (
+            <strong>💎 Premium conversion</strong>
+          ) : (
+            <button onClick={() => setIsPremium(true)}>Become premium</button>
+          )}
+        </span>
       </div>
     </ThemeContext.Provider>
   );
