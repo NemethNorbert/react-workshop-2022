@@ -6,6 +6,7 @@ function App() {
   const [theme, setTheme] = useState("light");
   const [conversion, setConversion] = useState(0);
   const [isPremium, setIsPremium] = useState(false);
+  const [conversionList, setConversionList] = useState([]);
 
   const MAX_CONVERSION = 5;
 
@@ -18,6 +19,14 @@ function App() {
     }
   };
 
+  useEffect(() => {
+    fetch("http://localhost:3003/data")
+      .then((resp) => resp.json())
+      .then((data) => {
+        setConversionList(data);
+      });
+  }, []);
+
   return (
     <ThemeContext.Provider value={theme}>
       <div className={`app ${theme}`}>
@@ -29,18 +38,18 @@ function App() {
           <option value="light">Light</option>
         </select>
 
-        <Converter
-          cryptoName="$BTC"
-          header={<h1>BTC converter</h1>}
-          exchangeRate={995}
-          onChange={countConversion}
-        />
-        <Converter
-          cryptoName="$ETH"
-          header={<h1>ETH converter</h1>}
-          exchangeRate={1.2}
-          onChange={countConversion}
-        />
+        {conversionList.map((item) => {
+          return (
+            <Converter
+              key={item.id}
+              cryptoName={item.label}
+              exchangeRate={item.conversionRate}
+              onChange={countConversion}
+              header={<h1>{item.name} converter</h1>}
+            />
+          );
+        })}
+
         <span>
           {isPremium ? (
             <strong>💎 Premium conversion</strong>
