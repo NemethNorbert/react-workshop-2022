@@ -1,11 +1,12 @@
 import React, { useState } from "react";
 import Amount from "./Amount";
 
-function Converter({ cryptoName, exchangeRate, header }) {
+function Converter({ cryptoName, exchangeRate, header, onChange }) {
   const [value, setValue] = useState(0);
 
   const handleChange = (value) => {
     setValue(value);
+    onChange();
   };
 
   const cryptoValue = parseFloat(value * exchangeRate).toFixed(2);

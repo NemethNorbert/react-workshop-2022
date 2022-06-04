@@ -9,14 +9,13 @@ function App() {
   const MAX_CONVERSION = 5;
 
   const countConversion = () => {
-    setConversion(conversion + 1);
-  };
-
-  useEffect(() => {
-    if (conversion > MAX_CONVERSION) {
+    if (conversion === MAX_CONVERSION) {
       alert("Convert without limits by becoming a premium user");
+      setConversion(1);
+    } else {
+      setConversion(conversion + 1);
     }
-  }, [conversion]);
+  };
 
   return (
     <ThemeContext.Provider value={theme}>
