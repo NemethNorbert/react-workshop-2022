@@ -1,6 +1,8 @@
-import Converter from "./components/Converter";
 import { useEffect, useState } from "react";
+import Converter from "./components/Converter";
+import PremiumButton from "./components/PremiumButton";
 import ThemeContext from "./context/ThemeContext";
+import ThemeSwitch from "./components/ThemeSwitch";
 import useCachedState from "./hooks/useCachedState";
 
 function App() {
@@ -29,16 +31,16 @@ function App() {
   }, []);
 
   return (
-    <ThemeContext.Provider value={theme}>
+    <ThemeContext.Provider
+      value={{
+        theme: theme,
+        setTheme: setTheme,
+        isPremium: isPremium,
+        setIsPremium: setIsPremium,
+      }}
+    >
       <div className={`app ${theme}`}>
-        <select
-          onChange={(event) => setTheme(event.target.value)}
-          value={theme}
-        >
-          <option value="dark">Dark</option>
-          <option value="light">Light</option>
-        </select>
-
+        <ThemeSwitch />
         {conversionList.map((item) => {
           return (
             <Converter
@@ -51,14 +53,7 @@ function App() {
             />
           );
         })}
-
-        <span>
-          {isPremium ? (
-            <strong>💎 Premium conversion</strong>
-          ) : (
-            <button onClick={() => setIsPremium(true)}>Become premium</button>
-          )}
-        </span>
+        <PremiumButton />
       </div>
     </ThemeContext.Provider>
   );
