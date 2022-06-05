@@ -1,4 +1,5 @@
 import { useContext } from "react";
+import PropTypes from "prop-types";
 import ThemeContext from "../context/ThemeContext";
 
 function PremiumButton() {
@@ -16,4 +17,8 @@ function PremiumButton() {
   );
 }
 
+PremiumButton.propTypes = {
+  isPremium: PropTypes.bool,
+  setIsPremium: PropTypes.func,
+};
 export default PremiumButton;

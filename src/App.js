@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import Converter from "./components/Converter";
 import PremiumButton from "./components/PremiumButton";
+import PropTypes from "prop-types";
 import ThemeContext from "./context/ThemeContext";
 import ThemeSwitch from "./components/ThemeSwitch";
 import useCachedState from "./hooks/useCachedState";
@@ -58,5 +59,12 @@ function App() {
     </ThemeContext.Provider>
   );
 }
+
+App.propTypes = {
+  theme: PropTypes.string,
+  conversion: PropTypes.number,
+  isPremium: PropTypes.bool,
+  conversionList: PropTypes.array,
+};
 
 export default App;

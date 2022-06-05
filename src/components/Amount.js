@@ -1,5 +1,6 @@
 import React, { useEffect, useRef, useState } from "react";
 import "../styles/App.css";
+import PropTypes from "prop-types";
 
 function Amount({ id, name, onChange, value }) {
   const [isNegative, setIsNegative] = useState(false);
@@ -33,5 +34,14 @@ function Amount({ id, name, onChange, value }) {
     </>
   );
 }
+
+Amount.propTypes = {
+  className: PropTypes.string,
+  id: PropTypes.string,
+  name: PropTypes.string,
+  label: PropTypes.string,
+  value: PropTypes.number,
+  onChange: PropTypes.func,
+};
 
 export default Amount;

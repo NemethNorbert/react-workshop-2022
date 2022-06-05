@@ -1,5 +1,6 @@
 import { useContext } from "react";
 import ThemeContext from "../context/ThemeContext";
+import PropTypes from "prop-types";
 
 function ThemeSwitch() {
   const appContext = useContext(ThemeContext);
@@ -13,5 +14,10 @@ function ThemeSwitch() {
     </select>
   );
 }
+
+ThemeSwitch.propTypes = {
+  theme: PropTypes.string,
+  setTheme: PropTypes.func,
+};
 
 export default ThemeSwitch;
