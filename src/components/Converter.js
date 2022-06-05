@@ -15,13 +15,19 @@ function Converter({ cryptoName, exchangeRate, header, onChange }) {
     <>
       <div className="header">{header}</div>
       <Amount
+        id="Euro"
         name="Euro"
         onChange={handleChange}
         readonly={false}
         value={value}
       />
 
-      <Amount name={cryptoName} readonly={true} value={cryptoValue} />
+      <Amount
+        id={cryptoName}
+        name={cryptoName}
+        readonly={true}
+        value={cryptoValue}
+      />
     </>
   );
 }

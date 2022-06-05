@@ -42,6 +42,7 @@ function App() {
         {conversionList.map((item) => {
           return (
             <Converter
+              id={item.id}
               key={item.id}
               cryptoName={item.label}
               exchangeRate={item.conversionRate}
