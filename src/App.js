@@ -1,11 +1,12 @@
 import Converter from "./components/Converter";
 import { useEffect, useState } from "react";
 import ThemeContext from "./context/ThemeContext";
+import useCachedState from "./hooks/useCachedState";
 
 function App() {
-  const [theme, setTheme] = useState("light");
+  const [theme, setTheme] = useCachedState("theme", "light");
   const [conversion, setConversion] = useState(0);
-  const [isPremium, setIsPremium] = useState(false);
+  const [isPremium, setIsPremium] = useCachedState("premium", false);
   const [conversionList, setConversionList] = useState([]);
 
   const MAX_CONVERSION = 5;
