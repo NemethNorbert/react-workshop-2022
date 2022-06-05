@@ -1,0 +1,31 @@
+.app {
+    font-size: 1.2em;
+    height: 100vh;
+    text-align: center;
+    padding-top: 2rem;
+}
+  
+.app.dark {
+    background: #000;
+    color: #efefef;
+}
+  
+.app.dark select {
+    background: #2e2e2e;
+    color: #efefef;
+}
+
+.app input {
+    margin: 10px;
+    padding: 5px;
+}
+
+.app select {
+    margin: 0px 40px;
+    padding: 5px;
+}
+
+.negative {
+    border: 5px solid red;
+}
+
