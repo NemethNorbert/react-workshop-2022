@@ -1,0 +1,6 @@
+.box {
+    display: inline-block;
+    border: 1px solid;
+    padding: 10px;
+    vertical-align: left;
+}
