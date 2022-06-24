@@ -17,3 +17,7 @@
     background-color: #555;
     color: #ccc;
 }
+.App.dark input{
+    background-color: #555;
+    color: #ccc;  
+}
